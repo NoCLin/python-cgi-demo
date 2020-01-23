@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <title>机位号展示</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div style="text-align: center;font-size: 100px; color: red">
+    <p id="ip">正在获取</p>
+    <p id="id">正在获取</p>
+</div>
+
+</body>
+<script>
+    window.onload = function () {
+        fetch("./cgi-bin/id.py").then(response => {
+            return response.json()
+        }).then(json => {
+            document.querySelector("#ip").innerText = "IP: " + json.ip;
+            document.querySelector("#id").innerText = json.id;
+        }).catch(error => {
+            alert(error)
+        })
+    }
+</script>
+</html>
